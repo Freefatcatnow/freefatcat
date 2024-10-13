@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fat Cat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #2c2c2c, #6e6e6e);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(40, 40, 40, 0.9);
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar a {
+            color: #f8b500;
+            text-decoration: none;
+            padding: 0 15px;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #00ffcc;
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(50, 50, 50, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 30px rgba(0, 255, 204, 0.4);
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff6f61;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 0px 0px 15px #ff6f61;
+        }
+        .status-bar-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            width: 100%;
+            height: 30px;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .status-bar {
+            background: linear-gradient(90deg, #9c27b0, #ff6f61);
+            height: 100%;
+            width: 0%;
+            border-radius: 25px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            transition: width 1s ease-in-out;
+        }
+        .message {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #ffb74d;
+        }
+        .hashtag {
+            font-weight: bold;
+            color: #00ffcc;
+            font-size: 1.3em;
+            text-shadow: 0px 0px 10px #00ffcc;
+        }
+        .fat-cat-image {
+            width: 230px;  /* You can adjust this if needed */
+    height: 230px; /* Set to make it smaller */
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 255, 204, 0.8);
+    transition: transform 0.3s ease;
+        }
+        .fat-cat-image:hover {
+            transform: scale(1.1);
+        }
+        .story {
+            font-size: 0.9em;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(70, 70, 70, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 111, 97, 0.8);
+        }
+        .booking-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(70, 70, 70, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 204, 0.8);
+        }
+        .booking-mugshot {
+            width: 180px;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 111, 97, 0.8);
+        }
+        .button {
+            background: linear-gradient(90deg, #9c27b0, #ff6f61);
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0px 0px 20px rgba(255, 111, 97, 0.8);
+        }
+        .button:hover {
+            background: linear-gradient(90deg, #ff6f61, #9c27b0);
+            transform: scale(1.05);
+        }
+        .donate-container {
+            margin: 20px 0;
+        }
+        .donate-input {
+            padding: 10px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+        .donate-input:focus {
+            border-color: #00ffcc;
+            outline: none;
+            box-shadow: 0px 0px 10px rgba(0, 255, 204, 0.8);
+        }
+        .social-container {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        .social-container a {
+            color: #00ffcc;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .social-container a:hover {
+            color: #ff6f61;
+        }
+        .ticker {
+            background-color: rgba(40, 40, 40, 0.9);
+            color: #ffb74d;
+            padding: 10px 0;
+            font-size: 1.1em;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+        }
+        .ticker p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 15s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .scroll-trigger {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-trigger.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#story">Story</a>
+        <a href="#booking-info">Booking Info</a>
+    </div>
+    <div class="ticker">
+        <p>🚀 Free Felix! 🐱 | Current FFC Price: Updating... | 🚨 Donate to help Felix make bail! 🤑 #freefatcat</p>
+    </div>
+    <div class="container">
+<h1>🤑 Free Fat Cat! 🐱</h1>
+        <img class="fat-cat-image" src="Drawing (1).jpeg" alt="Felix the Fat Cat"
+        .fat-cat-image {
+            width: 5px;  /* You can adjust this if needed */
+            height: 5px; /* Set to make it smaller */
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 204, 0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        >
+           
+        
+        <p class="message">Help raise money to bail the fat cat out of jail! The price of FFC determines how close we are to freeing the cat!</p>
+        <div class="status-bar-container">
+            <div id="statusBar" class="status-bar">0%</div>
+        </div>
+        <button class="button" onclick="window.location.href='https://www.dextools.io/app/en/bnb/pair-explorer/0xe5ed0e4516669baf319f10c88efcf0ed43dfa1f2?t=1728791565809'">Live Chart</button>
+        <div class="donate-container">
+            <input type="number" id="donationAmount" class="donate-input" placeholder="Enter amount to donate">
+            <button class="button" onclick="window.location.href='https://pancakeswap.finance/swap?inputCurrency=BNB&outputCurrency=0x632BB334700abEda77720C121548A2CEa2f62381'">Donate</button>
+            <button class="button" onclick="shareStory()">Share</button>
+        </div>
+        <div class="social-container">
+            <h3>Follow Us</h3>
+            <a href="https://x.com/freefatcatnow" target="_blank">Twitter</a>  |
+            <a href="https://instagram.com/YOUR_INSTAGRAM_LINK" target="_blank">Instagram</a>
+        </div>
+        <p class="hashtag">#freefatcat</p>
+    </div>
+    <div id="story" class="story scroll-trigger">
+        <p>Felix Fat Cat stole. He needs 1 million! Lets get status bar too 100% 🐾✨</p>
+    </div>
+    <div id="booking-info" class="container booking-info scroll-trigger">
+        <h2>Felix's Booking Info</h2>
+        <img class="booking-mugshot" src="MUGSHOT.jpeg" alt="Felix Mugshot">
+        <p><strong>Booking #:</strong> 202401960</p>
+        <p><strong>Booking Date:</strong> 10-11-2024 - 12:00 am</p>
+        <p><strong>Charges:</strong> Stealing food from the neighbor's house</p>
+    </div>
+    <script>
+        // Function to update the status bar based on FFC price
+        function updateStatusBar(price) {
+            // Set the goal amount to bail out the fat cat (e.g., $1 million total investment)
+            const goalInvestment = 1000000; // $1 million
+            const totalSupply = 1000000; // Assuming total supply is 1 million tokens
+            const minPrice = 0; // Minimum price is 0
+            const maxPrice = goalInvestment / totalSupply; // Calculate the target price to reach the goal
+
+            if (isNaN(price) || isNaN(maxPrice) || maxPrice === 0) {
+                console.error('Invalid price or maxPrice value');
+                return;
+            }
+
+            let percentage = (price / maxPrice) * 100; // Calculate percentage of goal reached
+            percentage = Math.max(0, Math.min(percentage, 100)); // Clamp between 0% and 100%
+
+            const statusBar = document.getElementById('statusBar');
+            statusBar.style.width = percentage + '%';
+            statusBar.textContent = Math.round(percentage) + '%';
+        }
+
+        // Function to fetch the price from DEXTools API
+        async function fetchPrice() {
+            try {
+                const response = await fetch('https://public-api.dextools.io/trial/v2/token/bsc/0x632bb334700abeda77720c121548a2cea2f62381', {
+                    headers: {
+                        'x-api-key': 'KzDMRvlO9F15X9IvzapnK7VsGyaYIB9S6bBRH1l1' // If an API key is needed
+                    }
+                });
+                const data = await response.json();
+                // Assuming the price is available in data.price
+                // Extract price information based on the available data
+                console.log(data); // Log the full response to understand the structure
+                const currentPrice = data.data.price;
+                if (currentPrice !== undefined && !isNaN(currentPrice)) {
+                    updateStatusBar(currentPrice);
+                } else {
+                    console.error('Price data is not available or invalid');
+                }
+            } catch (error) {
+                console.error('Error fetching price:', error);
+            }
+        }
+
+        // Fetch price every 10 seconds
+        setInterval(fetchPrice, 10000);
+
+        // Fetch price on page load
+        fetchPrice();
+
+        // Function to simulate a donation and update progress
+        function simulateDonation() {
+            const donationAmount = parseFloat(document.getElementById('donationAmount').value);
+            if (isNaN(donationAmount) || donationAmount <= 0) {
+                alert('Please enter a valid donation amount.');
+                return;
+            }
+            const currentPercentage = parseFloat(document.getElementById('statusBar').style.width);
+            let updatedPercentage = currentPercentage + (donationAmount / 10000) * 100; // Example conversion
+            updatedPercentage = Math.min(updatedPercentage, 100);
+            document.getElementById('statusBar').style.width = updatedPercentage + '%';
+            document.getElementById('statusBar').textContent = Math.round(updatedPercentage) + '%';
+        }
+
+        // Function to share the story (simulated)
+        function shareStory() {
+            alert('Share Felix\'s story on social media to help raise awareness! #freefatcat');
+        }
+        // Function to create coin animation on donation
+        function createCoinAnimation() {
+            const coin = document.createElement('div');
+            coin.className = 'coin';
+            document.body.appendChild(coin);
+            coin.style.left = Math.random() * window.innerWidth + 'px';
+            setTimeout(() => {
+                document.body.removeChild(coin);
+            }, 2000);
+        }
+
+        // Update the progress bar color based on percentage
+        function updateProgressBarColor(percentage) {
+            const statusBar = document.getElementById('statusBar');
+            if (percentage >= 75) {
+                statusBar.setAttribute('data-progress', '100');
+            } else if (percentage >= 50) {
+                statusBar.setAttribute('data-progress', '75');
+            } else if (percentage >= 25) {
+                statusBar.setAttribute('data-progress', '50');
+            } else {
+                statusBar.removeAttribute('data-progress');
+            }
+        }
+
+        // Modify simulateDonation to add coin animation and update color
+        function simulateDonation() {
+            const donationAmount = parseFloat(document.getElementById('donationAmount').value);
+            if (isNaN(donationAmount) || donationAmount <= 0) {
+                alert('Please enter a valid donation amount.');
+                return;
+            }
+            createCoinAnimation();
+            const currentPercentage = parseFloat(document.getElementById('statusBar').style.width);
+            let updatedPercentage = currentPercentage + (donationAmount / 10000) * 100; // Example conversion
+            updatedPercentage = Math.min(updatedPercentage, 100);
+            const statusBar = document.getElementById('statusBar');
+            statusBar.style.width = updatedPercentage + '%';
+            statusBar.textContent = Math.round(updatedPercentage) + '%';
+            updateProgressBarColor(updatedPercentage);
+        }
+    </script>
+    <div class="background-element"></div>
+    <script>
+        // Scroll-triggered animations
+        function onScroll() {
+            const elements = document.querySelectorAll('.scroll-trigger');
+            elements.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        document.addEventListener('DOMContentLoaded', onScroll);
+    </script>
+</body>
+</html>
